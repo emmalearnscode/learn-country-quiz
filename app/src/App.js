@@ -18,15 +18,25 @@ const nanoid = customAlphabet('1234567890abcdefghijklmnopqrstuvxyz', 5)
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// const firebaseConfig = {
+//   apiKey: "AIzaSyAvraf5s5RDgCPkjh63-hFgi10j11fiPxM",
+//   authDomain: "country-quiz-dc997.firebaseapp.com",
+//   databaseURL: "https://country-quiz-dc997-default-rtdb.europe-west1.firebasedatabase.app",
+//   projectId: "country-quiz-dc997",
+//   storageBucket: "country-quiz-dc997.appspot.com",
+//   messagingSenderId: "9659259197",
+//   appId: "1:9659259197:web:101698eeac61dd64ea4d54",
+//   measurementId: "G-SM2WHHKWFM"
+// };
+
 const firebaseConfig = {
-  apiKey: "AIzaSyAvraf5s5RDgCPkjh63-hFgi10j11fiPxM",
-  authDomain: "country-quiz-dc997.firebaseapp.com",
-  databaseURL: "https://country-quiz-dc997-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "country-quiz-dc997",
-  storageBucket: "country-quiz-dc997.appspot.com",
-  messagingSenderId: "9659259197",
-  appId: "1:9659259197:web:101698eeac61dd64ea4d54",
-  measurementId: "G-SM2WHHKWFM"
+  apiKey: "AIzaSyCdZj2RJiXOpnGw8qMFGwFO2VbHR1hYOnQ",
+  authDomain: "new-flag-game.firebaseapp.com",
+  databaseURL: "https://new-flag-game-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "new-flag-game",
+  storageBucket: "new-flag-game.appspot.com",
+  messagingSenderId: "506951071245",
+  appId: "1:506951071245:web:198d921497d464f70f4744"
 };
 
 // Initialize Firebase
