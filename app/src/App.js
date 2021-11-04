@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import { Route } from 'wouter'
 import './App.css'
 
@@ -28,6 +28,19 @@ const analytics = getAnalytics(app)
 export const db = getDatabase(app)
 
 const App = () => {
+  const [minusScore, setMinusScore] = useState(false) // activeras när den är false
+  const [randomizeFlags, setRandomizeFlags] = useState(false)
+  const [gameTie, setGameTie] = useState(false)
+
+  const featureFlags = {
+    minusScore,
+    randomizeFlags,
+    gameTie
+  }
+
+  useEffect(() => {
+    localStorage.setItem('featureFlags', JSON.stringify(featureFlags))
+  }, [minusScore, randomizeFlags, gameTie])
 
   return (
     <div className="app">

@@ -1,6 +1,5 @@
 
 import React from 'react'
-// import { customAlphabet } from 'nanoid'
 import * as utils from '../utils'
 import countries from '../countries'
 import { ref, update } from 'firebase/database'
@@ -8,7 +7,6 @@ import { useObject } from 'react-firebase-hooks/database'
 import { db } from '../App'
 import QuickResults from './QuickResults'
 
-// const nanoid = customAlphabet('1234567890abcdefghijklmnopqrstuvxyz', 5)
 
 const QuestionPage = ({ gameId, playerId }) => {
     const [snapshot, loading, error] = useObject(ref(db, `games/${gameId}`))
@@ -22,7 +20,10 @@ const QuestionPage = ({ gameId, playerId }) => {
     const question = game.questions[`${game.currentQuestion}`]
   
     if (!question) return 'Loading...'
-  
+
+    const featureFlags = JSON.parse(localStorage.getItem('featureFlags'))
+    console.log(featureFlags)
+
     const answer = async countryCode => {
       if (question.fastest) return
   
@@ -30,7 +31,10 @@ const QuestionPage = ({ gameId, playerId }) => {
       updates[`/games/${gameId}/questions/${game.currentQuestion}/fastest`] = { player: playerId, answer: countryCode }
       if (countryCode == question.correct) {
         updates[`/games/${gameId}/score/${youKey}`] = game.score[youKey] + 1
+      }else if(countryCode != question.correct && featureFlags.minusScore === true ){
+        updates[`/games/${gameId}/score/${youKey}`] = game.score[youKey] - 1
       }
+
       await update(ref(db), updates)
   
       if (game.currentQuestion < Object.values(game.questions).length) {
