@@ -1,15 +1,11 @@
 import React from 'react'
-import * as R from 'ramda'
-import { Link, Route, useLocation } from 'wouter'
-import { customAlphabet } from 'nanoid'
+import { Route } from 'wouter'
 import './App.css'
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app'
 import { getAnalytics } from 'firebase/analytics'
 import { getDatabase } from 'firebase/database'
-
-const nanoid = customAlphabet('1234567890abcdefghijklmnopqrstuvxyz', 5)
 
 //Componets
 import StartPage from './components/StartPage.js'
@@ -32,8 +28,6 @@ const analytics = getAnalytics(app)
 export const db = getDatabase(app)
 
 const App = () => {
-
-  // const ffImprovedScoring = true / false
 
   return (
     <div className="app">

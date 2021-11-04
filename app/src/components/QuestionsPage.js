@@ -1,13 +1,14 @@
 
 import React from 'react'
-import { customAlphabet } from 'nanoid'
+// import { customAlphabet } from 'nanoid'
 import * as utils from '../utils'
 import countries from '../countries'
 import { ref, update } from 'firebase/database'
 import { useObject } from 'react-firebase-hooks/database'
 import { db } from '../App'
+import QuickResults from './QuickResults'
 
-const nanoid = customAlphabet('1234567890abcdefghijklmnopqrstuvxyz', 5)
+// const nanoid = customAlphabet('1234567890abcdefghijklmnopqrstuvxyz', 5)
 
 const QuestionPage = ({ gameId, playerId }) => {
     const [snapshot, loading, error] = useObject(ref(db, `games/${gameId}`))

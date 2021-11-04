@@ -5,6 +5,10 @@ import { ref } from 'firebase/database'
 import { useObject } from 'react-firebase-hooks/database'
 import { db } from '../App'
 
+import QuickResults from './QuickResults'
+import winning from '../../assets/winning.png'
+import dog from '../../assets/dog.png'
+
 const ResultsPage = ({ gameId, playerId }) => {
     const [snapshot, loading, error] = useObject(ref(db, `games/${gameId}`))
   
@@ -23,14 +27,6 @@ const ResultsPage = ({ gameId, playerId }) => {
         <Link href="/" className="re-home link">
           Home
         </Link>
-      </div>
-    )
-  }
-
-  const QuickResults = ({ you, opponent }) => {
-    return (
-      <div className="quick-results">
-        YOU {you} - {opponent} OPPONENT
       </div>
     )
   }
