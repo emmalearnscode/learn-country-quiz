@@ -10,6 +10,7 @@ import { getDatabase } from 'firebase/database'
 //Componets
 import StartPage from './components/StartPage.js'
 import GamePage from './components/GamePage.js'
+import SetupPage from './components/SetupPage.js'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCdZj2RJiXOpnGw8qMFGwFO2VbHR1hYOnQ',
@@ -39,6 +40,15 @@ const App = () => {
   }
 
   useEffect(() => {
+    const featureFlags = JSON.parse(localStorage.getItem('featureFlags'))
+    if (featureFlags) {
+      setMinusScore(featureFlags.minusScore)
+      setRandomizeFlags(featureFlags.randomizeFlags)
+      setGameTie(featureFlags.gameTie)
+    }
+  }, [])
+
+  useEffect(() => {
     localStorage.setItem('featureFlags', JSON.stringify(featureFlags))
   }, [minusScore, randomizeFlags, gameTie])
 
@@ -48,6 +58,16 @@ const App = () => {
       <div className="middle">
         <Route path="/">
           <StartPage />
+        </Route>
+        <Route path="/setup">
+          <SetupPage
+            minusScore={minusScore}
+            setMinusScore={setMinusScore}
+            randomizeFlags={randomizeFlags}
+            setRandomizeFlags={setRandomizeFlags}
+            gameTie={gameTie}
+            setGameTie={setGameTie}
+          />
         </Route>
         <Route path="/game/:gameId/:playerId">
           {params => {
