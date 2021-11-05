@@ -28,9 +28,9 @@ const analytics = getAnalytics(app)
 export const db = getDatabase(app)
 
 const App = () => {
-  const [minusScore, setMinusScore] = useState(false) // activeras när den är false
-  const [randomizeFlags, setRandomizeFlags] = useState(false)
-  const [gameTie, setGameTie] = useState(false)
+  const [minusScore, setMinusScore] = useState(true) // activeras när den är false
+  const [randomizeFlags, setRandomizeFlags] = useState(true)
+  const [gameTie, setGameTie] = useState(true)
 
   const featureFlags = {
     minusScore,
