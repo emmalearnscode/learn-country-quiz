@@ -1,4 +1,7 @@
 
+import countries from './countries'
+
+
 const hardCodedQuestions = {
 	1: {
 		alternatives: {
@@ -20,8 +23,40 @@ const hardCodedQuestions = {
 	}
 }
 
-export const createGame = () => {
-	const generatedQuestions = hardCodedQuestions
+function shuffle(array) {
+	return array.sort(() => Math.random() - 0.5);
+}
+
+const randomGeneratedQuestions = () => {
+	const randomGeneratedQuestionsOBJ = {
+	
+	}
+	const countryCodes = Object.keys(countries)
+	const shuffledCountries = shuffle(countryCodes)
+
+	for (let i = 1; i <= 5; i++) {
+		const randomNumber = Math.floor(Math.random() * 4)
+		randomGeneratedQuestionsOBJ[i] = {
+			alternatives:{
+				1: shuffledCountries[0].toLowerCase(),
+				2: shuffledCountries[1].toLowerCase(),
+				3: shuffledCountries[2].toLowerCase(),
+				4: shuffledCountries[3].toLowerCase()
+			},
+			correct: shuffledCountries[randomNumber].toLowerCase()
+		}
+		console.log(randomGeneratedQuestionsOBJ);
+		shuffledCountries.splice(0, 4)
+	}
+
+	return randomGeneratedQuestionsOBJ
+}
+
+export const createGame = (randomQuestions) => {
+	const questionsOBJ = randomGeneratedQuestions() //kommer uppdatera med random questions
+
+	const generatedQuestions = randomQuestions ? questionsOBJ: hardCodedQuestions
+
 	return {
 		currentQuestion: 1,
 		questions: generatedQuestions,

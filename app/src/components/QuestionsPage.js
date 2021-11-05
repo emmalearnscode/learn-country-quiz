@@ -22,7 +22,6 @@ const QuestionPage = ({ gameId, playerId }) => {
     if (!question) return 'Loading...'
 
     const featureFlags = JSON.parse(localStorage.getItem('featureFlags'))
-    console.log(featureFlags)
 
     const answer = async countryCode => {
       if (question.fastest) return
@@ -38,12 +37,12 @@ const QuestionPage = ({ gameId, playerId }) => {
       await update(ref(db), updates)
   
       if (game.currentQuestion < Object.values(game.questions).length) {
-        await utils.sleep(3000)
+        await utils.sleep(1000)
         const updates2 = {}
         updates2[`/games/${gameId}/currentQuestion`] = parseInt(game.currentQuestion) + 1
         await update(ref(db), updates2)
       } else {
-        await utils.sleep(3000)
+        await utils.sleep(1000)
         const updates2 = {}
         updates2[`/games/${gameId}/status`] = 'finished'
         await update(ref(db), updates2)

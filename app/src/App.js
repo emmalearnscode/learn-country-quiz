@@ -49,6 +49,8 @@ const App = () => {
       setMinusScore(featureFlags.minusScore)
       setRandomizeFlags(featureFlags.randomizeFlags)
       setGameTie(featureFlags.gameTie)
+      setRandomQuestions(featureFlags.randomQuestions)
+      setCookieBanner(featureFlags.cookieBanner)
     }
   }, [])
 
@@ -61,7 +63,7 @@ const App = () => {
       <div className="header">THE FLAG GAME</div>
       <div className="middle">
         <Route path="/">
-          <StartPage randomizeFlags={randomizeFlags} />
+          <StartPage randomQuestions={randomQuestions} randomizeFlags={randomizeFlags} />
         </Route>
         <Route path="/setup">
           <SetupPage

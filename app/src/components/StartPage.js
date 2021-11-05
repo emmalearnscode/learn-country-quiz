@@ -14,7 +14,7 @@ const nanoid = customAlphabet('1234567890abcdefghijklmnopqrstuvxyz', 5)
 
 const countriesArr = Object.keys(countries)
 
-const StartPage = ({ randomizeFlags }) => {
+const StartPage = ({ randomizeFlags, randomQuestions }) => {
   const [snapshot, loading, error] = useObject(ref(db, 'nextGame'))
   const [location, setLocation] = useLocation()
 
@@ -31,14 +31,14 @@ const StartPage = ({ randomizeFlags }) => {
       await update(ref(db), updates)
       setLocation(`/game/${gameId}/1`)
     } else {
-      const game = utils.createGame()
+      const game = utils.createGame(randomQuestions)
       const updates = {}
       updates['/nextGame'] = null
       updates[`/games/${nextGame}`] = game
       await update(ref(db), updates)
       setLocation(`/game/${nextGame}/2`)
 
-      await utils.sleep(3000)
+      await utils.sleep(1000)
       const updates2 = {}
       updates2[`/games/${nextGame}/status`] = 'playing'
       await update(ref(db), updates2)
