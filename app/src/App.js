@@ -57,7 +57,7 @@ const App = () => {
       <div className="header">THE FLAG GAME</div>
       <div className="middle">
         <Route path="/">
-          <StartPage />
+          <StartPage randomizeFlags={randomizeFlags} />
         </Route>
         <Route path="/setup">
           <SetupPage

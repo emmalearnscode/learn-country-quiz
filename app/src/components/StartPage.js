@@ -14,16 +14,12 @@ const nanoid = customAlphabet('1234567890abcdefghijklmnopqrstuvxyz', 5)
 
 const countriesArr = Object.keys(countries)
 
-const featureFlags = JSON.parse(localStorage.getItem('featureFlags'))
-
-const StartPage = () => {
+const StartPage = ({ randomizeFlags }) => {
   const [snapshot, loading, error] = useObject(ref(db, 'nextGame'))
   const [location, setLocation] = useLocation()
 
   const randomNum = Math.floor(Math.random() * 156 + 1)
-  console.log(randomNum)
   const countriesArrSlice = countriesArr.slice(randomNum, randomNum + 60)
-  console.log(countriesArrSlice)
   if (loading) return <div className="fw6 fs5">Loading...</div>
   const nextGame = snapshot.val()
 
@@ -50,7 +46,7 @@ const StartPage = () => {
   }
 
   const flags =
-    featureFlags.randomizeFlags === false ? (
+    randomizeFlags === false ? (
       <div className="st-flags">
         <div className="f32">
           <div className={`flag aze`}></div>
@@ -131,4 +127,4 @@ const StartPage = () => {
   )
 }
 
-  export default StartPage
+export default StartPage
