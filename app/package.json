@@ -35,9 +35,8 @@
     "build:dev": "webpack --mode development",
     "analyze:prod": "cross-env NODE_ENV=production BUNDLE_ANALYZE=true webpack --mode production",
     "analyze:dev": "cross-env BUNDLE_ANALYZE=true webpack --mode development",
-    "test-ci": "mocha ./problems/**/test*.js --exit",
-    "test": "mocha ./problems/**/test*.js --parallel --watch",
-    "deploy": "npm run build:prod && firebase deploy && rm -rf dist"
+    "test-ci": "mocha ./src/tests/*test.js --exit",
+    "test": "mocha ./src/tests/*test.js --parallel --watch"
   },
   "eslintConfig": {
     "extends": [
