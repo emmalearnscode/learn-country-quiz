@@ -32,11 +32,15 @@ const App = () => {
   const [minusScore, setMinusScore] = useState(true) // activeras när den är false
   const [randomizeFlags, setRandomizeFlags] = useState(true)
   const [gameTie, setGameTie] = useState(true)
+	const [randomQuestions, setRandomQuestions] = useState(false)
+  const [cookieBanner, setCookieBanner] = useState(false)
 
   const featureFlags = {
     minusScore,
     randomizeFlags,
-    gameTie
+    gameTie,
+    cookieBanner,
+    randomQuestions,
   }
 
   useEffect(() => {
@@ -50,7 +54,7 @@ const App = () => {
 
   useEffect(() => {
     localStorage.setItem('featureFlags', JSON.stringify(featureFlags))
-  }, [minusScore, randomizeFlags, gameTie])
+  }, [minusScore, randomizeFlags, gameTie, randomQuestions, cookieBanner])
 
   return (
     <div className="app">
@@ -67,6 +71,10 @@ const App = () => {
             setRandomizeFlags={setRandomizeFlags}
             gameTie={gameTie}
             setGameTie={setGameTie}
+            randomQuestions={randomQuestions}
+            setRandomQuestions={setRandomQuestions}
+            cookieBanner={cookieBanner}
+            setCookieBanner={setCookieBanner}
           />
         </Route>
         <Route path="/game/:gameId/:playerId">

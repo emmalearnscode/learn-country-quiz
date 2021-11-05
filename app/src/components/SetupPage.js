@@ -1,6 +1,17 @@
 import { Link } from 'wouter'
 
-const SetupPage = ({ minusScore, setMinusScore, randomizeFlags, setRandomizeFlags, gameTie, setGameTie }) => {
+const SetupPage = ({
+  minusScore,
+  setMinusScore,
+  randomizeFlags,
+  setRandomizeFlags,
+  gameTie,
+  setGameTie,
+  randomQuestions,
+  setRandomQuestions,
+  cookieBanner,
+  setCookieBanner,
+}) => {
   const handleChange = name => {
     switch (name) {
       case 'minus-score':
@@ -11,6 +22,12 @@ const SetupPage = ({ minusScore, setMinusScore, randomizeFlags, setRandomizeFlag
         break
       case 'tie-screen':
         setGameTie(!gameTie)
+        break
+      case 'random-questions':
+        setRandomQuestions(!randomQuestions)
+        break
+      case 'cookie-banner':
+        setCookieBanner(!cookieBanner)
         break
       default:
         console.log('something went wrong')
@@ -37,6 +54,20 @@ const SetupPage = ({ minusScore, setMinusScore, randomizeFlags, setRandomizeFlag
         <p>Tie screen</p>
         <label className="switch">
           <input type="checkbox" checked={gameTie} onChange={() => handleChange('tie-screen')} />
+          <span className="slider round"></span>
+        </label>
+      </div>
+      <div className="flex-row">
+        <p>Randomize questions</p>
+        <label className="switch">
+          <input type="checkbox" checked={randomQuestions} onChange={() => handleChange('random-questions')} />
+          <span className="slider round"></span>
+        </label>
+      </div>
+      <div className="flex-row">
+        <p>Cookie banner</p>
+        <label className="switch">
+          <input type="checkbox" checked={cookieBanner} onChange={() => handleChange('cookie-banner')} />
           <span className="slider round"></span>
         </label>
       </div>
