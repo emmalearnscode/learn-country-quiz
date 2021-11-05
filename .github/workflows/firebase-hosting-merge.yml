@@ -21,8 +21,8 @@ jobs:
           npm run build:prod
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-        entrypoint: app
-        repoToken: '${{ secrets.GITHUB_TOKEN }}'
-        firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_NEW_FLAG_GAME }}'
-        channelId: live
-        projectId: new-flag-game
+          entrypoint: app
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_NEW_FLAG_GAME }}'
+          channelId: live
+          projectId: new-flag-game
