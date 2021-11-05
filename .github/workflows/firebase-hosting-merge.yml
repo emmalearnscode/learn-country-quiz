@@ -7,28 +7,21 @@ name: Deploy to Firebase Hosting on merge
     branches:
       - main
 
-
-
-
-
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Change subdirectory
-      working-directory: app
-    - run: |
-          npm ci  
+      - uses: actions/checkout@v2
+      - name: "change to subdirectory"
+        working-directory: ./app
+        run: |
+          npm ci
           npm run test-ci
-      
-    - uses: actions/checkout@v2
-    - run: npm run build:prod'
-      working-directory: app
-    - uses: FirebaseExtended/action-hosting-deploy@v0
-      with:
-        entrypoint: app
+          npm run build:prod
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+        entrypoint: ./app
         repoToken: '${{ secrets.GITHUB_TOKEN }}'
         firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_NEW_FLAG_GAME }}'
         channelId: live
