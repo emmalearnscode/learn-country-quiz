@@ -14,14 +14,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: "change to subdirectory"
-        working-directory: ./app
+        working-directory: app
         run: |
           npm ci
           npm run test-ci
           npm run build:prod
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-        entrypoint: ./app
+        entrypoint: app
         repoToken: '${{ secrets.GITHUB_TOKEN }}'
         firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_NEW_FLAG_GAME }}'
         channelId: live
