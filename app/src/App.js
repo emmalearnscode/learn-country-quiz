@@ -13,6 +13,7 @@ import GamePage from './components/GamePage.js'
 import SetupPage from './components/SetupPage.js'
 import CookiesPage from './components/CookiesPage.js'
 import CookieBanner from './components/CookieBanner.js'
+import SetupAdvanced from './components/SetupAdvanced'
 
 // const firebaseConfig = {
 //   apiKey: 'AIzaSyCdZj2RJiXOpnGw8qMFGwFO2VbHR1hYOnQ',
@@ -25,15 +26,15 @@ import CookieBanner from './components/CookieBanner.js'
 // }
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCdZj2RJiXOpnGw8qMFGwFO2VbHR1hYOnQ",
-  authDomain: "new-flag-game.firebaseapp.com",
-  databaseURL: "https://new-flag-game-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "new-flag-game",
-  storageBucket: "new-flag-game.appspot.com",
-  messagingSenderId: "506951071245",
-  appId: "1:506951071245:web:198d921497d464f70f4744",
-  measurementId: "G-GF4QFRBZ12"
-};
+  apiKey: 'AIzaSyCdZj2RJiXOpnGw8qMFGwFO2VbHR1hYOnQ',
+  authDomain: 'new-flag-game.firebaseapp.com',
+  databaseURL: 'https://new-flag-game-default-rtdb.europe-west1.firebasedatabase.app',
+  projectId: 'new-flag-game',
+  storageBucket: 'new-flag-game.appspot.com',
+  messagingSenderId: '506951071245',
+  appId: '1:506951071245:web:198d921497d464f70f4744',
+  measurementId: 'G-GF4QFRBZ12'
+}
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig)
@@ -49,14 +50,14 @@ const App = () => {
   const [cookieBanner, setCookieBanner] = useState(false)
 
   const consent = document.cookie
-console.log(consent)
+  console.log(consent)
 
   const featureFlags = {
     minusScore,
     randomizeFlags,
     gameTie,
     cookieBanner,
-    randomQuestions,
+    randomQuestions
   }
 
   useEffect(() => {
@@ -95,6 +96,9 @@ console.log(consent)
             cookieBanner={cookieBanner}
             setCookieBanner={setCookieBanner}
           />
+        </Route>
+        <Route path="/setup-advanced">
+          <SetupAdvanced />
         </Route>
         <Route path="/game/:gameId/:playerId">
           {params => {
