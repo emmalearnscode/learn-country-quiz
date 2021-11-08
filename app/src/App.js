@@ -11,6 +11,8 @@ import { getDatabase } from 'firebase/database'
 import StartPage from './components/StartPage.js'
 import GamePage from './components/GamePage.js'
 import SetupPage from './components/SetupPage.js'
+import CookiesPage from './components/CookiesPage.js'
+import CookieBanner from './components/CookieBanner.js'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCdZj2RJiXOpnGw8qMFGwFO2VbHR1hYOnQ',
@@ -19,7 +21,7 @@ const firebaseConfig = {
   projectId: 'new-flag-game',
   storageBucket: 'new-flag-game.appspot.com',
   messagingSenderId: '506951071245',
-  appId: '1:506951071245:web:198d921497d464f70f4744'
+  appId: '1:506951071245:web:198d921497d464f70f4744',
 }
 
 // Initialize Firebase
@@ -32,7 +34,7 @@ const App = () => {
   const [minusScore, setMinusScore] = useState(true) // activeras när den är false
   const [randomizeFlags, setRandomizeFlags] = useState(true)
   const [gameTie, setGameTie] = useState(true)
-	const [randomQuestions, setRandomQuestions] = useState(false)
+  const [randomQuestions, setRandomQuestions] = useState(false)
   const [cookieBanner, setCookieBanner] = useState(false)
 
   const featureFlags = {
@@ -60,6 +62,7 @@ const App = () => {
 
   return (
     <div className="app">
+      {cookieBanner && <CookieBanner />}
       <div className="header">THE FLAG GAME</div>
       <div className="middle">
         <Route path="/">
@@ -83,6 +86,9 @@ const App = () => {
           {params => {
             return <GamePage gameId={params.gameId} playerId={params.playerId} />
           }}
+        </Route>
+        <Route path="/cookies">
+          <CookiesPage />
         </Route>
       </div>
       <div className="footer"></div>

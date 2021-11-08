@@ -207,3 +207,13 @@ input:checked + .slider:before {
   display: flex;
   width: 80%;
 }
+
+.subprocessor-table {
+  text-align: left;
+  border-spacing: 2rem 1rem;
+}
+
+.cookie-page {
+  margin: 2rem;
+}
+
