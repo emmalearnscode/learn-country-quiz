@@ -48,6 +48,8 @@ const App = () => {
   const [gameTie, setGameTie] = useState(true)
   const [randomQuestions, setRandomQuestions] = useState(false)
   const [cookieBanner, setCookieBanner] = useState(false)
+  const [profile, setProfile] = useState('')
+  const [footerColor, setFooterColor] = useState('#000000')
 
   const consent = document.cookie
   console.log(consent)
@@ -59,6 +61,22 @@ const App = () => {
     cookieBanner,
     randomQuestions
   }
+
+  useEffect(() => {
+    const profile = localStorage.getItem('profile')
+    if (profile) {
+      setProfile(profile)
+    } else {
+      const randomNumber = Math.random()
+      if (randomNumber < 0.3) {
+        localStorage.setItem('profile', 'pilots')
+        setProfile('pilots')
+      } else {
+        localStorage.setItem('profile', 'rest')
+        setProfile('rest')
+      }
+    }
+  }, [])
 
   useEffect(() => {
     const featureFlags = JSON.parse(localStorage.getItem('featureFlags'))
@@ -74,6 +92,25 @@ const App = () => {
   useEffect(() => {
     localStorage.setItem('featureFlags', JSON.stringify(featureFlags))
   }, [minusScore, randomizeFlags, gameTie, randomQuestions, cookieBanner])
+
+  useEffect(() => {
+    switch (profile) {
+      case 'alpha':
+        setFooterColor('#4D6EF6')
+        break
+      case 'beta':
+        setFooterColor('#FBB005')
+        break
+      case 'pilots':
+        setFooterColor('#FB5253')
+        break
+      case 'rest':
+        setFooterColor('#82C91F')
+        break
+      default:
+        setFooterColor('#000000')
+    }
+  }, [profile])
 
   return (
     <div className="app">
@@ -95,6 +132,8 @@ const App = () => {
             setRandomQuestions={setRandomQuestions}
             cookieBanner={cookieBanner}
             setCookieBanner={setCookieBanner}
+            profile={profile}
+            setProfile={setProfile}
           />
         </Route>
         <Route path="/setup-advanced">
@@ -109,7 +148,7 @@ const App = () => {
           <CookiesPage />
         </Route>
       </div>
-      <div className="footer"></div>
+      <div className="footer" style={{ backgroundColor: footerColor }}></div>
     </div>
   )
 }

@@ -11,6 +11,8 @@ const SetupPage = ({
   setRandomQuestions,
   cookieBanner,
   setCookieBanner,
+  profile,
+  setProfile
 }) => {
   const handleChange = name => {
     switch (name) {
@@ -33,6 +35,18 @@ const SetupPage = ({
         console.log('something went wrong')
     }
   }
+
+  const selectProfile = e => {
+    setProfile(e.target.value)
+
+    if (e.target.value === '') {
+      localStorage.removeItem('profile')
+    } else {
+      localStorage.setItem('profile', e.target.value)
+    }
+  }
+
+  console.log(profile)
 
   return (
     <div>
@@ -71,6 +85,56 @@ const SetupPage = ({
           <span className="slider round"></span>
         </label>
       </div>
+
+      <div>
+        <p>Choose a profile</p>
+        <label htmlFor="alpha">Alpha</label>
+        <input
+          checked={profile === 'alpha'}
+          onChange={e => selectProfile(e)}
+          name="profiles"
+          id="alpha"
+          type="radio"
+          value="alpha"
+        />
+        <label htmlFor="beta">Beta</label>
+        <input
+          checked={profile === 'beta'}
+          onChange={e => selectProfile(e)}
+          id="beta"
+          name="profiles"
+          type="radio"
+          value="beta"
+        />
+        <label htmlFor="pilots">Pilots</label>
+        <input
+          checked={profile === 'pilots'}
+          onChange={e => selectProfile(e)}
+          name="profiles"
+          id="pilots"
+          type="radio"
+          value="pilots"
+        />
+        <label htmlFor="rest">Rest</label>
+        <input
+          checked={profile === 'rest'}
+          onChange={e => selectProfile(e)}
+          id="rest"
+          name="profiles"
+          type="radio"
+          value="rest"
+        />
+        <label htmlFor="not-set">Not set</label>
+        <input
+          checked={profile === '' || !profile}
+          onChange={e => selectProfile(e)}
+          id="not-set"
+          name="profiles"
+          type="radio"
+          value=""
+        />
+      </div>
+
       <Link href="/" className="re-home link">
         Go to app
       </Link>
