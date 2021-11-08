@@ -14,15 +14,26 @@ import SetupPage from './components/SetupPage.js'
 import CookiesPage from './components/CookiesPage.js'
 import CookieBanner from './components/CookieBanner.js'
 
+// const firebaseConfig = {
+//   apiKey: 'AIzaSyCdZj2RJiXOpnGw8qMFGwFO2VbHR1hYOnQ',
+//   authDomain: 'new-flag-game.firebaseapp.com',
+//   databaseURL: 'https://new-flag-game-default-rtdb.europe-west1.firebasedatabase.app',
+//   projectId: 'new-flag-game',
+//   storageBucket: 'new-flag-game.appspot.com',
+//   messagingSenderId: '506951071245',
+//   appId: '1:506951071245:web:198d921497d464f70f4744',
+// }
+
 const firebaseConfig = {
-  apiKey: 'AIzaSyCdZj2RJiXOpnGw8qMFGwFO2VbHR1hYOnQ',
-  authDomain: 'new-flag-game.firebaseapp.com',
-  databaseURL: 'https://new-flag-game-default-rtdb.europe-west1.firebasedatabase.app',
-  projectId: 'new-flag-game',
-  storageBucket: 'new-flag-game.appspot.com',
-  messagingSenderId: '506951071245',
-  appId: '1:506951071245:web:198d921497d464f70f4744',
-}
+  apiKey: "AIzaSyCdZj2RJiXOpnGw8qMFGwFO2VbHR1hYOnQ",
+  authDomain: "new-flag-game.firebaseapp.com",
+  databaseURL: "https://new-flag-game-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "new-flag-game",
+  storageBucket: "new-flag-game.appspot.com",
+  messagingSenderId: "506951071245",
+  appId: "1:506951071245:web:198d921497d464f70f4744",
+  measurementId: "G-GF4QFRBZ12"
+};
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig)
@@ -36,6 +47,9 @@ const App = () => {
   const [gameTie, setGameTie] = useState(true)
   const [randomQuestions, setRandomQuestions] = useState(false)
   const [cookieBanner, setCookieBanner] = useState(false)
+
+  const consent = document.cookie
+console.log(consent)
 
   const featureFlags = {
     minusScore,
