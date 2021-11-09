@@ -1,7 +1,7 @@
 import React from 'react'
 import { useLocation } from 'wouter'
 import { customAlphabet } from 'nanoid'
-import { db } from '../App'
+import { db } from '../firebase-analytics'
 
 //analytics
 import { logEvent } from 'firebase/analytics'
@@ -31,7 +31,7 @@ const GamePage = ({ gameId, playerId }) => {
       setLocation(`/`)
 
       //logic cancel event
-      logEvent(analytics, 'game_cancelled');
+      analytics && logEvent(analytics, 'game_cancelled');
     }
   
     if (game && game.status === 'playing') return <QuestionPage gameId={gameId} playerId={playerId} />

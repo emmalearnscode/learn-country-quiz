@@ -2,10 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { Route } from 'wouter'
 import './App.css'
 
-// Import the functions you need from the SDKs you need
-import { initializeApp } from 'firebase/app'
-import { getAnalytics, logEvent } from 'firebase/analytics'
-import { getDatabase } from 'firebase/database'
+//Analytics
+import { app } from './firebase-analytics'
+import { getAnalytics } from 'firebase/analytics'
 
 //Componets
 import StartPage from './components/StartPage.js'
@@ -15,33 +14,7 @@ import CookiesPage from './components/CookiesPage.js'
 import CookieBanner from './components/CookieBanner.js'
 import SetupAdvanced from './components/SetupAdvanced'
 
-// const firebaseConfig = {
-//   apiKey: 'AIzaSyCdZj2RJiXOpnGw8qMFGwFO2VbHR1hYOnQ',
-//   authDomain: 'new-flag-game.firebaseapp.com',
-//   databaseURL: 'https://new-flag-game-default-rtdb.europe-west1.firebasedatabase.app',
-//   projectId: 'new-flag-game',
-//   storageBucket: 'new-flag-game.appspot.com',
-//   messagingSenderId: '506951071245',
-//   appId: '1:506951071245:web:198d921497d464f70f4744',
-// }
-
-const firebaseConfig = {
-  apiKey: 'AIzaSyCdZj2RJiXOpnGw8qMFGwFO2VbHR1hYOnQ',
-  authDomain: 'new-flag-game.firebaseapp.com',
-  databaseURL: 'https://new-flag-game-default-rtdb.europe-west1.firebasedatabase.app',
-  projectId: 'new-flag-game',
-  storageBucket: 'new-flag-game.appspot.com',
-  messagingSenderId: '506951071245',
-  appId: '1:506951071245:web:198d921497d464f70f4744',
-  measurementId: 'G-GF4QFRBZ12'
-}
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig)
-export const analytics = getAnalytics(app)
-
-export const db = getDatabase(app)
-
+export let analytics = localStorage.getItem('analyticsEnabled') ? getAnalytics(app)  : null
 
 const App = () => {
   const [minusScore, setMinusScore] = useState(true) // activeras när den är false
@@ -51,9 +24,6 @@ const App = () => {
   const [cookieBanner, setCookieBanner] = useState(false)
   const [profile, setProfile] = useState('')
   const [footerColor, setFooterColor] = useState('#000000')
-
-  const consent = document.cookie
-  console.log(consent)
 
   const featureFlags = {
     minusScore,
@@ -113,9 +83,14 @@ const App = () => {
     }
   }, [profile])
 
+  const initializeAnalytics = () => {
+    console.log('initializing analytics /App.js');
+    analytics = getAnalytics(app)
+  }
+
   return (
     <div className="app">
-      {cookieBanner && <CookieBanner />}
+      {cookieBanner && <CookieBanner onAccept={initializeAnalytics} />}
       <div className="header">THE FLAG GAME</div>
       <div className="middle">
         <Route path="/">

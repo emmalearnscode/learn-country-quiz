@@ -4,7 +4,7 @@ import * as utils from '../utils'
 import countries from '../countries'
 import { ref, update } from 'firebase/database'
 import { useObject } from 'react-firebase-hooks/database'
-import { db } from '../App'
+import { db } from '../firebase-analytics'
 import QuickResults from './QuickResults'
 
 

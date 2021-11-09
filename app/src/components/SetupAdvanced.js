@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { db } from '../App'
+import { db } from '../firebase-analytics'
 import { ref, update } from 'firebase/database'
 import { useObject } from 'react-firebase-hooks/database'
 

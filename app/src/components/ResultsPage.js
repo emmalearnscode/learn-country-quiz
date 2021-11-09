@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'wouter'
 import { ref } from 'firebase/database'
 import { useObject } from 'react-firebase-hooks/database'
-import { db } from '../App'
+import { db } from '../firebase-analytics'
 
 import QuickResults from './QuickResults'
 import winning from '../../assets/winning.png'

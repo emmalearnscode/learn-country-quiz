@@ -8,7 +8,7 @@ import * as utils from '../utils'
 import { logEvent } from 'firebase/analytics'
 import { analytics } from '../App'
 
-import { db } from '../App'
+import { db } from '../firebase-analytics'
 import countries from '../countries'
 
 import { ref, update } from 'firebase/database'
@@ -49,7 +49,7 @@ const StartPage = ({ randomizeFlags, randomQuestions }) => {
       await update(ref(db), updates2)
     }
 
-    logEvent(analytics, 'game_started');
+    analytics && logEvent(analytics, 'game_started');
   }
 
   const flags =
