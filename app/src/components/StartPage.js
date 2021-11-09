@@ -4,6 +4,10 @@ import { useLocation } from 'wouter'
 import { customAlphabet } from 'nanoid'
 import * as utils from '../utils'
 
+//analytics
+import { logEvent } from 'firebase/analytics'
+import { analytics } from '../App'
+
 import { db } from '../App'
 import countries from '../countries'
 
@@ -44,6 +48,8 @@ const StartPage = ({ randomizeFlags, randomQuestions }) => {
       updates2[`/games/${nextGame}/status`] = 'playing'
       await update(ref(db), updates2)
     }
+
+    logEvent(analytics, 'game_started');
   }
 
   const flags =

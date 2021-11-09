@@ -3,6 +3,10 @@ import { useLocation } from 'wouter'
 import { customAlphabet } from 'nanoid'
 import { db } from '../App'
 
+//analytics
+import { logEvent } from 'firebase/analytics'
+import { analytics } from '../App'
+
 // Import the functions you need from the SDKs you need
 import { ref, update } from 'firebase/database'
 import { useObject } from 'react-firebase-hooks/database'
@@ -25,6 +29,9 @@ const GamePage = ({ gameId, playerId }) => {
       updates['/nextGame'] = null
       await update(ref(db), updates)
       setLocation(`/`)
+
+      //logic cancel event
+      logEvent(analytics, 'game_cancelled');
     }
   
     if (game && game.status === 'playing') return <QuestionPage gameId={gameId} playerId={playerId} />

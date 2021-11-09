@@ -4,7 +4,7 @@ import './App.css'
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app'
-import { getAnalytics } from 'firebase/analytics'
+import { getAnalytics, logEvent } from 'firebase/analytics'
 import { getDatabase } from 'firebase/database'
 
 //Componets
@@ -38,9 +38,10 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig)
-const analytics = getAnalytics(app)
+export const analytics = getAnalytics(app)
 
 export const db = getDatabase(app)
+
 
 const App = () => {
   const [minusScore, setMinusScore] = useState(true) // activeras när den är false
