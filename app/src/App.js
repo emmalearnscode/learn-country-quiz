@@ -24,7 +24,7 @@ const App = () => {
   const [randomizeFlags, setRandomizeFlags] = useState(true)
   const [gameTie, setGameTie] = useState(true)
   const [randomQuestions, setRandomQuestions] = useState(false)
-  const [cookieBanner, setCookieBanner] = useState(false)
+  const [cookieBanner, setCookieBanner] = useState(true)
   const [profile, setProfile] = useState('')
   const [footerColor, setFooterColor] = useState('#000000')
 
