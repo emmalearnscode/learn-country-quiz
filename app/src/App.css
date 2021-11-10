@@ -68,6 +68,19 @@
   padding: 4rem;
 }
 
+.btn-choice {
+  width: 100px;
+  height: 100px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+}
+
+.choose-num {
+  margin: 0 auto;
+  padding: 1rem;
+}
+
 .link {
   color: blue;
   text-decoration: none;
@@ -220,6 +233,12 @@ input:checked + .slider:before {
 .flex-row  {
   display: flex;
   width: 80%;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 .subprocessor-table {

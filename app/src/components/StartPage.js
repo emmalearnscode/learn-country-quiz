@@ -31,7 +31,7 @@ const StartPage = ({ randomizeFlags, randomQuestions }) => {
   const nextGame = snapshot.val()
   const profile = profileSnapshot.val()
 
-  const play = async () => {
+  const play = async numQs => {
     if (R.isNil(nextGame)) {
       const updates = {}
       const gameId = nanoid()
@@ -39,7 +39,7 @@ const StartPage = ({ randomizeFlags, randomQuestions }) => {
       await update(ref(db), updates)
       setLocation(`/game/${gameId}/1`)
     } else {
-      const game = utils.createGame(randomQuestions)
+      const game = utils.createGame(randomQuestions, numQs)
       const updates = {}
       updates['/nextGame'] = null
       updates[`/games/${nextGame}`] = game
@@ -126,13 +126,34 @@ const StartPage = ({ randomizeFlags, randomQuestions }) => {
       </div>
     )
 
+  const newButtons = (
+    <div>
+      <h3 className="choose-num">Your opponent is waiting. Please choose number of questions...</h3>
+      <div className="buttonContainer">
+        <div className="button btn-square btn-choice" onClick={() => play(5)}>
+          5
+        </div>
+        <div className="button btn-square btn-choice" onClick={() => play(10)}>
+          10
+        </div>
+        <div className="button btn-square btn-choice" onClick={() => play(15)}>
+          15
+        </div>
+      </div>
+    </div>
+  )
+
   return (
     <div className="page">
       {flags}
+      {profile.numQuestions && nextGame ? (
+        newButtons
+      ) : (
+        <div className="button btn-square" onClick={() => play(5)}>
+          START
+        </div>
+      )}
 
-      <div className="button btn-square" onClick={play}>
-        START
-      </div>
       {profile.latestGames && <LatestGames />}
     </div>
   )
