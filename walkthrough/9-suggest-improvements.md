@@ -3,6 +3,8 @@ Now that you've been working in a trunk based project using many kind of feature
 
 - What did you like with this work method?
 
+Trunk based can result in better quality code because of mob programming.
+
 We liked the ability to quickly toggle different functions on and off, especially from the database. We found it gave us more control over which section of the app was shown on the screen and certain aspects of development faster. Using the feature flags in the database connected to different user profiles made it easier to test different combinations of features. 
 
 We liked that working trunk-based meant not having to keep track of different branches which removed the risk of working in a wrong branch. You can always be sure that you have the latest functions and features in the branch you are working on and not have to wait for colleagues branches to be merged.
@@ -14,6 +16,8 @@ We do not yet understand how to implement code reviews in this kind of workflow 
 We did not like that we had to write a lot of extra code to be able to use feature flags and a lot of old code remained in the files which can bloat the size of the bundle. 
 
 Working with cookies and flags saved in localStorage led to extra time being spent having to clear the information in the inspector to make sure that we were working with the right information when we were testing.
+
+Trunk based development makes it difficult for the team to work on different parts of the application at the same time since it would result in a big merge conflict.
 
 - Can you come up with a couple of ideas for how to improve the workflow?
 
