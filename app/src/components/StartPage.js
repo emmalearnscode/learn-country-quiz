@@ -13,7 +13,7 @@ import countries from '../countries'
 
 import { ref, update } from 'firebase/database'
 import { useObject } from 'react-firebase-hooks/database'
-
+import LatestGames from './LatestGames'
 
 const nanoid = customAlphabet('1234567890abcdefghijklmnopqrstuvxyz', 5)
 
@@ -22,11 +22,14 @@ const countriesArr = Object.keys(countries)
 const StartPage = ({ randomizeFlags, randomQuestions }) => {
   const [snapshot, loading, error] = useObject(ref(db, 'nextGame'))
   const [location, setLocation] = useLocation()
+  const userProfile = localStorage.getItem('profile')
+  const [profileSnapshot, profileLoading, profileError] = useObject(ref(db, `profiles/${userProfile}`))
 
   const randomNum = Math.floor(Math.random() * 156 + 1)
   const countriesArrSlice = countriesArr.slice(randomNum, randomNum + 60)
-  if (loading) return <div className="fw6 fs5">Loading...</div>
+  if (loading || profileLoading) return <div className="fw6 fs5">Loading...</div>
   const nextGame = snapshot.val()
+  const profile = profileSnapshot.val()
 
   const play = async () => {
     if (R.isNil(nextGame)) {
@@ -49,7 +52,7 @@ const StartPage = ({ randomizeFlags, randomQuestions }) => {
       await update(ref(db), updates2)
     }
 
-    analytics && logEvent(analytics, 'game_started');
+    analytics && logEvent(analytics, 'game_started')
   }
 
   const flags =
@@ -130,6 +133,7 @@ const StartPage = ({ randomizeFlags, randomQuestions }) => {
       <div className="button btn-square" onClick={play}>
         START
       </div>
+      {profile.latestGames && <LatestGames />}
     </div>
   )
 }

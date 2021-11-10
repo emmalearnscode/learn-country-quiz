@@ -56,6 +56,7 @@ const QuestionPage = ({ gameId, playerId }) => {
       await utils.sleep(1000)
       const updates2 = {}
       updates2[`/games/${gameId}/status`] = 'finished'
+      updates2[`/games/${gameId}/timestamp`] = Date.now()
       await update(ref(db), updates2)
     }
   }
