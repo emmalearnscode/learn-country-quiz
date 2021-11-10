@@ -80,6 +80,12 @@
   margin-top: 2rem;
 }
 
+.grid-view {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: auto;
+}
+
 .alt {
   background: #f0f0f0;
   border: 1px solid #e6e6e6;
@@ -90,6 +96,12 @@
   padding: 0.9rem;
   font-size: 1.6rem;
   position: relative;
+}
+.grid-view .alt {
+  display: grid;
+  place-items: center;
+  width: 35vw;
+  height: 120px;
 }
 
 .alt-green {
