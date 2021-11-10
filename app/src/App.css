@@ -101,7 +101,9 @@
   display: grid;
   place-items: center;
   width: 35vw;
+  max-width: 400px;
   height: 120px;
+
 }
 
 .alt-green {
