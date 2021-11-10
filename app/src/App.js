@@ -6,6 +6,8 @@ import './App.css'
 import { app } from './firebase-analytics'
 import { getAnalytics } from 'firebase/analytics'
 
+import LogRocket from 'logrocket'
+
 //Componets
 import StartPage from './components/StartPage.js'
 import GamePage from './components/GamePage.js'
@@ -14,7 +16,8 @@ import CookiesPage from './components/CookiesPage.js'
 import CookieBanner from './components/CookieBanner.js'
 import SetupAdvanced from './components/SetupAdvanced'
 
-export let analytics = localStorage.getItem('analyticsEnabled') ? getAnalytics(app)  : null
+export let analytics = localStorage.getItem('analyticsEnabled') ? getAnalytics(app) : null
+export let logRocket = localStorage.getItem('analyticsEnabled') ? LogRocket.init('sflrgz/new-flag-game') : null
 
 const App = () => {
   const [minusScore, setMinusScore] = useState(true) // activeras när den är false
@@ -84,8 +87,9 @@ const App = () => {
   }, [profile])
 
   const initializeAnalytics = () => {
-    console.log('initializing analytics /App.js');
+    console.log('initializing analytics /App.js')
     analytics = getAnalytics(app)
+    logRocket = LogRocket.init('sflrgz/new-flag-game')
   }
 
   return (
