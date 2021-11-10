@@ -23,13 +23,6 @@ We would also suggest a much more test driven approach be used to protect produc
 
 We suggest that localStorage should not be used at all for feature flags. Instead, an approach using feature flags in a realtime database works fine. If the project scales using a 3rd party tool should be looked into in order to standardize the process for all developers across the company and to avoid unnecessary business hours being spent creating an in-house solution.
 
-```mermaid
-graph LR
-A[coding...] --> B(push feature 1)
-A --> C(push feature 2)
-B --> D{boom}
-C --> D
-```
 
 Don't forget to [put a green checkmark](README.md) before you continue to the next task!
 
