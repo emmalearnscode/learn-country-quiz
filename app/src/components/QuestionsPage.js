@@ -4,12 +4,16 @@ import countries from '../countries'
 import { ref, update } from 'firebase/database'
 import { useObject } from 'react-firebase-hooks/database'
 import { db } from '../firebase-analytics'
+import { logEvent } from 'firebase/analytics'
+import { analytics } from '../App'
 import QuickResults from './QuickResults'
 
 const QuestionPage = ({ gameId, playerId }) => {
   const [gameSnapshot, gameLoading, gameError] = useObject(ref(db, `games/${gameId}`))
   const userProfile = localStorage.getItem('profile')
   const [profileSnapshot, profileLoading, profileError] = useObject(ref(db, `profiles/${userProfile}`))
+
+  const t0 = performance.now()
 
   if (gameLoading || profileLoading) return <div className="fw6 fs5">Loading...</div>
   const game = gameSnapshot.val()
@@ -25,6 +29,12 @@ const QuestionPage = ({ gameId, playerId }) => {
   const featureFlags = JSON.parse(localStorage.getItem('featureFlags'))
 
   const answer = async countryCode => {
+    const t1 = performance.now()
+    const timeToAnswer = t1 - t0
+
+    if (analytics) {
+      logEvent(analytics, `answer-time-${profile.grid ? 'grid' : 'stacked'}`, { time: timeToAnswer.toFixed(0) })
+    }
     if (question.fastest) return
 
     const updates = {}
