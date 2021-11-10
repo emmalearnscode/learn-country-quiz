@@ -48,12 +48,24 @@ const QuestionPage = ({ gameId, playerId }) => {
     await update(ref(db), updates)
 
     if (game.currentQuestion < Object.values(game.questions).length) {
-      await utils.sleep(1000)
+      if (profile.countdown) {
+        for (let i = 3; i > 0; i--) {
+          const updates = {}
+          updates[`/games/${gameId}/countdown`] = i
+          await update(ref(db), updates)
+          await utils.sleep(1000)
+        }
+        const reset = {}
+        reset[`/games/${gameId}/countdown`] = 3
+        await update(ref(db), reset)
+      } else {
+        await utils.sleep(3000)
+      }
       const updates2 = {}
       updates2[`/games/${gameId}/currentQuestion`] = parseInt(game.currentQuestion) + 1
       await update(ref(db), updates2)
     } else {
-      await utils.sleep(1000)
+      await utils.sleep(3000)
       const updates2 = {}
       updates2[`/games/${gameId}/status`] = 'finished'
       updates2[`/games/${gameId}/timestamp`] = Date.now()
@@ -92,7 +104,16 @@ const QuestionPage = ({ gameId, playerId }) => {
           )
         })}
       </div>
-      {question.fastest && <div className="fs7 fw5 m9">Get ready for the next question...</div>}
+      {question.fastest && game.currentQuestion === Object.values(game.questions).length && (
+        <div className="fs7 fw5 m9">Results being calculated...</div>
+      )}
+      {question.fastest &&
+        game.currentQuestion < Object.values(game.questions).length &&
+        (profile.countdown ? (
+          <div className="fs7 fw5 m9">Get ready for the next question in {game.countdown} seconds...</div>
+        ) : (
+          <div className="fs7 fw5 m9">Get ready for the next question...</div>
+        ))}
       {question.fastest && <QuickResults you={game.score[youKey]} opponent={game.score[opponentKey]} />}
     </div>
   )
