@@ -146,7 +146,7 @@ const StartPage = ({ randomizeFlags, randomQuestions }) => {
   return (
     <div className="page">
       {flags}
-      {profile.numQuestions && nextGame ? (
+      {profile.numQuestions && nextGame && randomQuestions ? (
         newButtons
       ) : (
         <div className="button btn-square" onClick={() => play(5)}>
