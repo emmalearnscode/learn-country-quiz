@@ -23,6 +23,11 @@ const CookiesPage = () => {
           <td>Website analytics and performance</td>
           <td>United States</td>
         </tr>
+        <tr>
+          <td>Logrocket</td>
+          <td>Website optimization and bug tracking</td>
+          <td>United States</td>
+        </tr>
       </table>
 
       <h2>Cookie Information</h2>
