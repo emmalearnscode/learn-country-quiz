@@ -44,9 +44,9 @@ const GamePage = ({ gameId, playerId }) => {
         {game && game.status === 'starting' && 'Starting game... Get READY!'}
       </div>
       {!game && (
-        <Link className="link" style={{ marginTop: '10rem' }} onClick={cancel}>
+        <div tabIndex={0} className="link" style={{ marginTop: '10rem' }} onClick={cancel}>
           Cancel
-        </Link>
+        </div>
       )}
     </div>
   )
