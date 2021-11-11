@@ -91,7 +91,7 @@ const QuestionPage = ({ gameId, playerId }) => {
             }
           }
           return (
-            <div
+            <button
               className={`button alt ${correct && 'alt-green'} ${correct === false && 'alt-red'}`}
               key={countryCode}
               title={countryCode}
@@ -100,7 +100,7 @@ const QuestionPage = ({ gameId, playerId }) => {
               {countries[countryCode.toUpperCase()]}
               {}
               {youOrOpponent && <div className="alt-label">{youOrOpponent}</div>}
-            </div>
+            </button>
           )
         })}
       </div>

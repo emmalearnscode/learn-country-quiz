@@ -51,7 +51,7 @@ const ResultsPage = ({ gameId, playerId }) => {
 const Won = ({ you, opponent }) => {
   return (
     <div className="results">
-      <img src={winning} style={{ width: '80%' }} />
+      <img src={winning} style={{ width: '80%' }} alt="image of a trophy" />
       <div className="re-text">Congratulations!!</div>
       <QuickResults you={you} opponent={opponent} />
     </div>
@@ -61,7 +61,7 @@ const Won = ({ you, opponent }) => {
 const Lost = ({ you, opponent }) => {
   return (
     <div className="results">
-      <img src={dog} style={{ width: '80%' }} />
+      <img src={dog} style={{ width: '80%' }} alt="image of a dog" />
       <div className="re-text">Better luck next time...</div>
       <QuickResults you={you} opponent={opponent} />
     </div>
@@ -71,7 +71,7 @@ const Lost = ({ you, opponent }) => {
 const Tie = ({ you, opponent }) => {
   return (
     <div className="results">
-      <img src={handshake} style={{ width: '80%' }} />
+      <img src={handshake} style={{ width: '80%' }} alt="image of a handshake" />
       <div className="re-text">It's a draw!</div>
       <QuickResults you={you} opponent={opponent} />
     </div>

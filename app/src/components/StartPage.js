@@ -130,15 +130,15 @@ const StartPage = ({ randomizeFlags, randomQuestions }) => {
     <div>
       <h3 className="choose-num">Your opponent is waiting. Please choose number of questions...</h3>
       <div className="buttonContainer">
-        <div className="button btn-square btn-choice" onClick={() => play(5)}>
+        <button className="button btn-square btn-choice" onClick={() => play(5)}>
           5
-        </div>
-        <div className="button btn-square btn-choice" onClick={() => play(10)}>
+        </button>
+        <button className="button btn-square btn-choice" onClick={() => play(10)}>
           10
-        </div>
-        <div className="button btn-square btn-choice" onClick={() => play(15)}>
+        </button>
+        <button className="button btn-square btn-choice" onClick={() => play(15)}>
           15
-        </div>
+        </button>
       </div>
     </div>
   )
@@ -149,9 +149,9 @@ const StartPage = ({ randomizeFlags, randomQuestions }) => {
       {profile.numQuestions && nextGame && randomQuestions ? (
         newButtons
       ) : (
-        <div className="button btn-square" onClick={() => play(5)}>
+        <button className="button btn-square" onClick={() => play(5)}>
           START
-        </div>
+        </button>
       )}
 
       {profile.latestGames && <LatestGames />}

@@ -95,8 +95,10 @@ const App = () => {
   return (
     <div className="app">
       {cookieBanner && <CookieBanner onAccept={initializeAnalytics} />}
-      <div className="header">THE FLAG GAME</div>
-      <div className="middle">
+      <header className="header">
+        <h1>THE FLAG GAME</h1>
+      </header>
+      <main className="middle">
         <Route path="/">
           <StartPage randomQuestions={randomQuestions} randomizeFlags={randomizeFlags} />
         </Route>
@@ -127,12 +129,12 @@ const App = () => {
         <Route path="/cookies">
           <CookiesPage />
         </Route>
-      </div>
-      <div className="footer" style={{ backgroundColor: footerColor }}>
+      </main>
+      <footer className="footer" style={{ backgroundColor: footerColor }}>
         <Link href="/cookies" className="link link-light">
           Cookies policy
         </Link>
-      </div>
+      </footer>
     </div>
   )
 }
