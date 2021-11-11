@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Route } from 'wouter'
+import { Route, Link } from 'wouter'
 import './App.css'
 
 //Analytics
@@ -33,7 +33,7 @@ const App = () => {
     randomizeFlags,
     gameTie,
     cookieBanner,
-    randomQuestions
+    randomQuestions,
   }
 
   useEffect(() => {
@@ -128,7 +128,11 @@ const App = () => {
           <CookiesPage />
         </Route>
       </div>
-      <div className="footer" style={{ backgroundColor: footerColor }}></div>
+      <div className="footer" style={{ backgroundColor: footerColor }}>
+        <Link href="/cookies" className="link link-light">
+          Cookies policy
+        </Link>
+      </div>
     </div>
   )
 }
