@@ -1,13 +1,19 @@
 import React from 'react'
+import { analytics, logRocket } from '../App'
 
 const CookiesPage = () => {
   const handleCookies = () => {
-    const cookies = document.cookie
-    console.log(cookies)
-    document.cookie = 'rcl_consent_given=; expires=Thu, 01 Jan 1970 00:00:00 UTC;'
-    document.cookie = 'rcl_preferences_consent=; expires=Thu, 01 Jan 1970 00:00:00 UTC;'
-    document.cookie = 'rcl_statistics_consent=; expires=Thu, 01 Jan 1970 00:00:00 UTC;'
-    document.cookie = 'rcl_marketing_consent=; expires=Thu, 01 Jan 1970 00:00:00 UTC;'
+    localStorage.removeItem('analyticsEnabled')
+    localStorage.removeItem('_lr_id_')
+    const cookies = document.cookie.split(';')
+
+    for (let i = 0; i < cookies.length; i++) {
+      let cookie = cookies[i]
+      let eqPos = cookie.indexOf('=')
+      let name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie
+      document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT'
+    }
+    location.reload()
   }
   return (
     <div className="cookie-page">
@@ -59,7 +65,7 @@ const CookiesPage = () => {
         may link this data across the different devices you use. If you choose not to accept marketing cookies, we will not place such
         cookies on your device, and you may experience less relevant content from us.
       </p>
-      {/* <button onClick={handleCookies}>Manage Cookie Preferences</button> */}
+      <button onClick={handleCookies}>Manage Cookie Preferences</button>
     </div>
   )
 }
